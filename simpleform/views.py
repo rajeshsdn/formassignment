@@ -32,7 +32,7 @@ def create(response):
             lname = form.cleaned_data["lastname"]
             newcontact = contact(firstname=fname,lastname=lname)
             newcontact.save()
-        return HttpResponseRedirect("/%i" %newcontact.id)
+        return HttpResponseRedirect("/simpleform/thanks")
     else:
         form = createcontact()
     # form = createcontact()
@@ -43,4 +43,9 @@ def create(response):
 #     context['form']= contactform()
 #     return render(request, "contactinputview.hmtl", context)
 
+def showallcontacts(request):
+    allcontacts = contact.objects.all()
+    return render(request, 'allcontacts.html', {'all_contacts': allcontacts})
 
+def showthanks(request):
+    return render(request, 'thanks.html')

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset="UTF-8">
+    <title>all contacts</title>
+
+</head>
+  <body>
+
+            <div id="content">
+                <table id="users">
+                <tr>
+                <th> ID</th>
+                <th>Firstname</th>
+		        <th>Lastname</th>
+                </tr>
+	{% for i in all_contacts %}
+                <tr>
+                <td >{{i.id}}</td>
+                <td >{{i.firstname}}</td>
+                <td >{{i.lastname}}</td>
+                </tr>
+                {% endfor %}
+                </table>
+
+
+
+      </div>
+    </body>
+</html>
