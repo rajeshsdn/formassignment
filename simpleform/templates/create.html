@@ -4,13 +4,13 @@
 </head>
 <body>
 
-{% block title %} Create New List {% endblock %}
+{% block title %} Create New Contact {% endblock %}
 
 {% block content %}
-Create Page
-<form method=""post" action="/create/">
-    {{form}}
-    <button type=""submit", name="save">Create New</button>
+<form method=""post" action="/simpleform/create/">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type=""submit", name="save">Create New Contact</button>
 </form>
 {% endblock %}
 </body>

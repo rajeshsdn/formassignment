@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponseRedirect, HttpResponse, redirec
 import os
 from . import contactform
 from .contactform import createcontact
+from .models import contact
 #from simpleform.models import contact
 
 # Create your views here.
@@ -24,11 +25,22 @@ def PAnalysisview(request):
 #     return render(request, 'index.html')
 
 def create(response):
-    form = createcontact()
+    if response.method == "POST":
+        form = createcontact(response.POST)
+        if form.is_valid:
+            fname = form.cleaned_data["firstname"]
+            lname = form.cleaned_data["lastname"]
+            newcontact = contact(firstname=fname,lastname=lname)
+            newcontact.save()
+        return HttpResponseRedirect("/%i" %newcontact.id)
+    else:
+        form = createcontact()
+    # form = createcontact()
     return render(response, 'create.html', {"form":form})
 
 # def contactinputview(request):
 #     context ={}
 #     context['form']= contactform()
 #     return render(request, "contactinputview.hmtl", context)
+
 
